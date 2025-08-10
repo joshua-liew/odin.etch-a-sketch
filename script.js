@@ -7,5 +7,20 @@ for (let i = 0; i < NUM_OF_ROWS; i++) {
     div.classList.add(...cls);
     div.style["border"] = "0.25rem solid red";
     div.style["height"] = "25px";
+    div.style["display"] = "flex";
+    div.style["flexDirection"] = "col";
     container.appendChild(div);
 }
+
+const NUM_OF_COLS = 16;
+const rowList = document.querySelectorAll(".row");
+rowList.forEach((row) => {
+    for (let i = 0; i < NUM_OF_COLS; i++) {
+        const div = document.createElement("div");
+        const cls = ["col", `col-${i}`,];
+        div.classList.add(...cls);
+        div.style["border"] = "0.25rem solid blue";
+        div.style["width"] = "25px";
+        row.appendChild(div);
+    }
+});
