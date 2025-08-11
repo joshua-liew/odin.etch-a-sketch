@@ -34,3 +34,17 @@ gridItemList.forEach((gridItem) => {
         e.target.style["background-color"] = "yellow";
     }, {once: true});
 });
+
+const form = document.querySelector("form");
+form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    console.log("You've submitted the form!");
+    const formData = new FormData(form);
+    formData.keys().forEach((key) => {
+        console.log(key);
+    });
+    const numRows = formData.get("input-row");
+    const numCols = formData.get("input-col");
+    console.log(numRows);
+    console.log(numCols);
+});
