@@ -1,4 +1,6 @@
 const container = document.querySelector(".container");
+container.style["display"] = "flex";
+container.style["flexDirection"] = "column";
 
 const NUM_OF_ROWS = 16;
 for (let i = 0; i < NUM_OF_ROWS; i++) {
@@ -8,7 +10,8 @@ for (let i = 0; i < NUM_OF_ROWS; i++) {
     div.style["border"] = "0.25rem solid red";
     div.style["height"] = "25px";
     div.style["display"] = "flex";
-    div.style["flexDirection"] = "col";
+    div.style["flexDirection"] = "row";
+    div.style["justifyContent"] = "space-between";
     container.appendChild(div);
 }
 
@@ -20,7 +23,7 @@ rowList.forEach((row) => {
         const cls = ["col", `col-${i}`,];
         div.classList.add(...cls);
         div.style["border"] = "0.25rem solid blue";
-        div.style["width"] = "25px";
+        div.style["width"] = "100%";
         row.appendChild(div);
     }
 });
