@@ -34,6 +34,10 @@ function createCols(numCols) {
     });
 }
 
+function clearGrid() {
+    container.innerHTML = "";
+}
+
 const gridItemList = document.querySelectorAll(".grid-item");
 gridItemList.forEach((gridItem) => {
     gridItem.addEventListener("mouseenter", function (e) {
@@ -44,6 +48,9 @@ gridItemList.forEach((gridItem) => {
 const form = document.querySelector("form");
 form.addEventListener("submit", (e) => {
     e.preventDefault();
+    // TODO: clear the existing grid
+    clearGrid();
+
     // TODO: add form logic
     const formData = new FormData(form);
     const numRows = formData.get("num-rows");
