@@ -62,10 +62,16 @@ table {
 	flex-direction: row;
 	justify-content: space-between;
 	height: 100%;
-	border: 0.25rem solid red;
+	border-top: 1px solid black;
+}
+.row:last-child {
+	border-bottom: 1px solid black;
 }
 
 .col {
 	width: 100%;
-	border: 0.25rem solid blue;
+	border-left: 1px solid black;
+}
+.col:last-child {
+	border-right: 1px solid black;
 }
