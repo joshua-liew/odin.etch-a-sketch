@@ -38,6 +38,11 @@ function clearGrid() {
     container.innerHTML = "";
 }
 
+// https://stackoverflow.com/questions/175739/how-can-i-check-if-a-string-is-a-valid-number
+function isNumeric(string) {
+    return !isNaN(+string) && !(string === '');
+}
+
 const gridItemList = document.querySelectorAll(".grid-item");
 gridItemList.forEach((gridItem) => {
     gridItem.addEventListener("mouseenter", function (e) {
@@ -48,15 +53,16 @@ gridItemList.forEach((gridItem) => {
 const form = document.querySelector("form");
 form.addEventListener("submit", (e) => {
     e.preventDefault();
-    // TODO: clear the existing grid
-    clearGrid();
 
     // TODO: add form logic
     const formData = new FormData(form);
     const numRows = formData.get("num-rows");
     const numCols = formData.get("num-cols");
     // TODO: add data validation
-
-    createRows(numRows);
-    createCols(numCols);
+    if (isNumeric(numRows) && isNumeric(numCols)) {
+        // TODO: clear the existing grid
+        clearGrid();
+        createRows(+numRows);
+        createCols(+numCols);       
+    }
 });
