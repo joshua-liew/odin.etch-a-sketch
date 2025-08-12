@@ -50,3 +50,22 @@ table {
 
 /* --- Styles start here! --- */
 
+.container {
+	width: 600px;
+	height: 600px;
+	display: flex;
+	flex-direction: column;
+}
+
+.row {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	height: 100%;
+	border: 0.25rem solid red;
+}
+
+.col {
+	width: 100%;
+	border: 0.25rem solid blue;
+}

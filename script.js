@@ -1,20 +1,10 @@
-const container = document.querySelector(".container");
-container.style["width"] = "600px";
-container.style["height"] = "600px";
-container.style["display"] = "flex";
-container.style["flexDirection"] = "column";
-
 function createRows(numRows) {
     const NUM_OF_ROWS = numRows;
     for (let i = 0; i < NUM_OF_ROWS; i++) {
+        const container = document.querySelector(".container");
         const div = document.createElement("div");
         const cls = ["row", `row-${i}`,];
         div.classList.add(...cls);
-        div.style["border"] = "0.25rem solid red";
-        div.style["display"] = "flex";
-        div.style["flexDirection"] = "row";
-        div.style["height"] = "100%";
-        div.style["justifyContent"] = "space-between";
         container.appendChild(div);
     }
 }
@@ -27,14 +17,13 @@ function createCols(numCols) {
             const div = document.createElement("div");
             const cls = ["col", `col-${i}`, "grid-item"];
             div.classList.add(...cls);
-            div.style["border"] = "0.25rem solid blue";
-            div.style["width"] = "100%";
             row.appendChild(div);
         }
     });
 }
 
 function clearGrid() {
+    const container = document.querySelector(".container");
     container.innerHTML = "";
 }
 
