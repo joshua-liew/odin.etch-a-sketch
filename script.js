@@ -1,4 +1,9 @@
 function createRows(numRows) {
+    if (!isWithinRange(numRows)) {
+        // TODO: call display error
+        return;
+    }
+
     const NUM_OF_ROWS = numRows;
     for (let i = 0; i < NUM_OF_ROWS; i++) {
         const container = document.querySelector(".container");
@@ -10,6 +15,11 @@ function createRows(numRows) {
 }
 
 function createCols(numCols) {
+    if (!isWithinRange(numCols)) {
+        // TODO: call display error
+        return;
+    }
+    
     const NUM_OF_COLS = numCols;
     const rowList = document.querySelectorAll(".row");
     rowList.forEach((row) => {
@@ -30,6 +40,12 @@ function clearGrid() {
 // https://stackoverflow.com/questions/175739/how-can-i-check-if-a-string-is-a-valid-number
 function isNumeric(string) {
     return !isNaN(+string) && !(string === '');
+}
+
+function isWithinRange(num) {
+    const MIN = 1;
+    const MAX = 100;
+    return MIN <= num && num <= MAX;
 }
 
 function loadGrid() {
