@@ -43,12 +43,14 @@ function isNumeric(string) {
     return !isNaN(+string) && !(string === '');
 }
 
-const gridItemList = document.querySelectorAll(".grid-item");
-gridItemList.forEach((gridItem) => {
-    gridItem.addEventListener("mouseenter", function (e) {
-        e.target.style["background-color"] = "yellow";
-    }, {once: true});
-});
+function loadGrid() {
+    const gridItemList = document.querySelectorAll(".grid-item");
+    gridItemList.forEach((gridItem) => {
+        gridItem.addEventListener("mouseenter", function (e) {
+            e.target.style["background-color"] = "yellow";
+        }, {once: true});
+    });
+}
 
 const form = document.querySelector("form");
 form.addEventListener("submit", (e) => {
@@ -64,5 +66,6 @@ form.addEventListener("submit", (e) => {
         clearGrid();
         createRows(+numRows);
         createCols(+numCols);       
+        loadGrid();
     }
 });
