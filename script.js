@@ -110,7 +110,14 @@ function loadGrid() {
     const gridItemList = document.querySelectorAll(".grid-item");
     gridItemList.forEach((gridItem) => {
         gridItem.addEventListener("mouseenter", function (e) {
-            e.target.style["background-color"] = "yellow";
+            const colors = [];
+            for (let i = 0; i < 3; i++) {
+                colors.push(Math.floor(Math.random() * 255).toString(16));
+            }
+            const hexColor = colors.reduce(
+                (string, color) => string + color, '#'
+            );
+            e.target.style["background-color"] = hexColor;
         }, {once: true});
     });
 }
