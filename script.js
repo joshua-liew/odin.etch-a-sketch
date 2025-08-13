@@ -54,6 +54,47 @@ function isWithinRange(num, min, max) {
     return MIN <= num && num <= MAX;
 }
 
+// returns a LIST of error objects
+function validateFormData(numRows, numCols) {
+    const errors = [];
+    // TODO: add data validation
+    if (!isNumeric(numRows) && errors.length === 0) {
+        const error = {
+            message: `Number of rows must be a valid integer`,
+        };
+        errors.push(error);
+    }
+    if (!isNumeric(numCols) && errors.length === 0) {
+        const error = {
+            message: `Number of columns must be a valid integer`,
+        };
+        errors.push(error);
+    }
+
+    const MIN_ROWS_COLS = 1;
+    const MAX_ROWS_COLS = 100;
+    if (
+        !isWithinRange(numRows, MIN_ROWS_COLS, MAX_ROWS_COLS)
+        && errors.length === 0
+    ) {
+        const error = {
+            message: `Number of rows must be between ${MIN_ROWS_COLS} and ${MAX_ROWS_COLS}`,
+        };
+        errors.push(error);
+    }
+    if (
+        !isWithinRange(numCols, MIN_ROWS_COLS, MAX_ROWS_COLS)
+        && errors.length === 0
+    ) {
+        const error = {
+            message: `Number of columns must be between ${MIN_ROWS_COLS} and ${MAX_ROWS_COLS}`,
+        };
+        errors.push(error);
+    }
+    
+    return errors;
+}
+
 function loadGrid() {
     const gridItemList = document.querySelectorAll(".grid-item");
     gridItemList.forEach((gridItem) => {
@@ -71,16 +112,15 @@ form.addEventListener("submit", (e) => {
     const formData = new FormData(form);
     const numRows = formData.get("num-rows");
     const numCols = formData.get("num-cols");
-    // TODO: add data validation
-    if (
-        isNumeric(numRows) && isNumeric(numCols)
-        && isWithinRange(numRows, 1, 100)
-        && isWithinRange(numCols, 1, 100)
-    ) {
-        // TODO: clear the existing grid
+
+    const errors = validateFormData(numRows, numCols);
+    if (errors.length === 0) {
         clearGrid();
         createRows(+numRows);
         createCols(+numCols);       
         loadGrid();
+    } else {
+        // TODO: handle errors
+        console.log(errors);
     }
 });
