@@ -34,7 +34,7 @@ function clearErrors() {
 
 // takes in error object { message: string, }
 function showError(error) {
-    const body = document.querySelector("body");
+    const main = document.querySelector("main");
     const container = document.querySelector(".container");
     const div = document.createElement("div");
     const cls = ["error",];
@@ -45,7 +45,7 @@ function showError(error) {
     p.textContent = string;
     div.appendChild(p);
 
-    body.insertBefore(div, container);
+    main.insertBefore(div, container);
     console.error(string);
 }
 
