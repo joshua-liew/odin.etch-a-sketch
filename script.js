@@ -27,6 +27,12 @@ function clearGrid() {
     container.innerHTML = "";
 }
 
+function clearErrors() {
+    const errorDiv = document.querySelector(".error");
+    if (errorDiv !== null)  errorDiv.outerHTML = "";
+}
+
+// takes in error object { message: string, }
 function showError(error) {
     const body = document.querySelector("body");
     const container = document.querySelector(".container");
@@ -35,12 +41,17 @@ function showError(error) {
     div.classList.add(...cls);
 
     const p = document.createElement("p");
-    const string = `Error: ${error}`;
+    const string = `Error: ${error.message}`;
     p.textContent = string;
     div.appendChild(p);
 
     body.insertBefore(div, container);
     console.error(string);
+}
+
+// takes in list of errors and displays them
+function handleErrors(errors) {
+    errors.map(showError);
 }
 
 // https://stackoverflow.com/questions/175739/how-can-i-check-if-a-string-is-a-valid-number
@@ -113,6 +124,7 @@ form.addEventListener("submit", (e) => {
     const numRows = formData.get("num-rows");
     const numCols = formData.get("num-cols");
 
+    clearErrors();
     const errors = validateFormData(numRows, numCols);
     if (errors.length === 0) {
         clearGrid();
@@ -120,7 +132,6 @@ form.addEventListener("submit", (e) => {
         createCols(+numCols);       
         loadGrid();
     } else {
-        // TODO: handle errors
-        console.log(errors);
+        handleErrors(errors);
     }
 });
