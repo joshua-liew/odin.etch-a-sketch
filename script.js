@@ -135,3 +135,9 @@ form.addEventListener("submit", (e) => {
         handleErrors(errors);
     }
 });
+
+const btnClear = document.querySelector("#clear");
+btnClear.addEventListener("click", (e) => {
+    e.preventDefault();
+    clearGrid();
+})
